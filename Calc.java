@@ -1,6 +1,8 @@
+import java.util.Stack;
+
 //Калькулятор арифметических формул.
 public class Calc extends Compf{
-    private StackInt s;
+    private Stack<Integer> s;
 
     private static int char2int(char c){
         return(int)c - (int)'0';
@@ -39,18 +41,17 @@ public class Calc extends Compf{
     }
 
     @Override
-    protected void nextOther(char c){
-        s.push(char2int(c));
-        //s.push(Character.getNumericValue(c));
+    protected void nextNumber(int number){
+        s.push(number);
     }
 
     public Calc(){
-        s = new StackInt();
+        s = new Stack<Integer>();
     }
 
     public final void compile(char[] str){
         super.compile(str);
 
-        System.out.println("" + s.top());
+        System.out.println("" + s.peek());
     }
 }
