@@ -37,7 +37,12 @@ public class Compf extends Stack<Character>{
     }
 
     private void processSymbol(char c){
-        switch(symType(c)){
+        int type = symType(c);
+
+        if(type != SYM_OTHER)
+            processNumber();
+
+        switch(type){
             case SYM_LEFT:
                 push(c);
                 break;
@@ -50,13 +55,20 @@ public class Compf extends Stack<Character>{
                 push(c);
                 break;
             case SYM_OTHER:
-                nextOther(c);
+                number += c;
                 break;
         }
     }
 
+    private void processNumber(){
+        if(!number.equals("")){
+            nextNumber(Integer.parseInt(number));
+            number = "";
+        }
+    }
+
     private void processSuspendedSymbols(char c){
-        while(precedes(top(), c))
+        while(precedes(peek(), c))
             nextOper(pop());
     }
 
@@ -84,8 +96,8 @@ public class Compf extends Stack<Character>{
         System.out.print("" + c + " ");
     }
 
-    protected void nextOther(char c){
-        nextOper(c);
+    protected void nextNumber(int number){
+        System.out.print("" + number + " ");
     }
 
     public void compile(char[] str){
@@ -99,3 +111,4 @@ public class Compf extends Stack<Character>{
         System.out.print("\n");
     }
 }
+
