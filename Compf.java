@@ -1,5 +1,7 @@
+import java.util.Stack;
+
 //Стековый компилятор формул.
-public class Compf extends Stack{
+public class Compf extends Stack<Character>{
     //Типы символов (скобки, знаки операций, иное).
     protected final static int SYM_LEFT = 0,
             SYM_RIGHT = 1,
@@ -12,11 +14,17 @@ public class Compf extends Stack{
     }
     */
 
+    private String number = "";
+
     private int symType(char c){
         switch(c){
             case '(':
+            case '[':
+            case '{':
                 return SYM_LEFT;
             case ')':
+            case ']':
+            case '}':
                 return SYM_RIGHT;
             case '+':
             case '-':

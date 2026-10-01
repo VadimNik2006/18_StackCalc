@@ -4,10 +4,6 @@ import java.util.Stack;
 public class Calc extends Compf{
     private Stack<Integer> s;
 
-    private static int char2int(char c){
-        return(int)c - (int)'0';
-    }
-
     @Override
     protected int symOther(char c){
         if(c < '0' || c > '9'){
