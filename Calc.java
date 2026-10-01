@@ -46,6 +46,8 @@ public class Calc extends Compf{
     }
 
     public final void compile(char[] str){
+        s.clear();
+
         super.compile(str);
 
         System.out.println("" + s.peek());
